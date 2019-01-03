@@ -3,6 +3,7 @@
 
 <%@ page import="java.util.*,mz.com.caelum.agenda.dao.*,
 	mz.com.caelum.agenda.modelo.*" %>
+<%@page import="java.text.DateFormat"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
 	"http://www.w3.org/TR/html4/loose.dtd">
@@ -12,10 +13,12 @@
 <title>Lista de Contactos</title>
 </head>
 <body>
-	<table>
+	<h1>Tabela de Contactos</h1>
+	<table border="1">
 		<%
 			ContactoDAO dao = new ContactoDAO();
 			List<Contacto> contactos = dao.getLista();
+			DateFormat f = DateFormat.getDateInstance(DateFormat.MEDIUM);
 			for(Contacto contacto : contactos){
 			%>
 				<tr>
@@ -23,7 +26,7 @@
 					<td><%= contacto.getNome() %></td>
 					<td><%= contacto.getEmail() %></td>
 					<td><%= contacto.getEndereco() %></td>
-					<td><%= contacto.getDataNascimento().getTime() %></td>
+					<td><%= f.format(contacto.getDataNascimento().getTime()) %></td>
 				</tr>
 			<%
 			}

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -37,6 +38,7 @@ public class ContactoDAO {
 					Calendar data = Calendar.getInstance();
 					data.setTime(rs.getDate("dataNascimento"));
 					contacto.setDataNascimento(data);
+					
 				contactos.add(contacto);
 			}
 			rs.close();
