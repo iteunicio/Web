@@ -25,6 +25,12 @@
 		<property name="suffix" value=".jsp"/>
 	</bean>
 	
+	<!-- Para o Spring carregar as mensages que extensão .properties -->
+	<bean id="messageSource" class=
+	"org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="/WEB-INF/mensagens" />
+	</bean>
+	
 	<!-- Configuração da DataSource -->
 	<bean id="mysqlDataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
