@@ -35,4 +35,9 @@
   	<location>/404.jsp</location>
   </error-page>
   
+  <!-- Configuração de Tempo Limite (Timeout) -->
+  <session-config>
+  	<session-timeout>5</session-timeout>
+  </session-config>
+  
 </web-app>

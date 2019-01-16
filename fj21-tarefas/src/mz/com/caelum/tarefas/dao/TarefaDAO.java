@@ -50,10 +50,10 @@ public class TarefaDAO {
 				tarefa.setFinalizado(rs.getBoolean("finalizado"));
 				//	Adicionando data ao contacto:
 					Calendar data = Calendar.getInstance();
-					if(rs.getDate("dataFinalizado") == null) {
+					if(rs.getDate("dataFinalizacao") == null) {
 						tarefa.setDataFinalizacao(null);
 					}else {
-						data.setTime(rs.getDate("dataFinalizado"));
+						data.setTime(rs.getDate("dataFinalizacao"));
 						tarefa.setDataFinalizacao(data);
 					}
 				
@@ -66,6 +66,37 @@ public class TarefaDAO {
 			throw new RuntimeException(e);
 		}
 		
+	}
+	
+	public Tarefa buscaPorId(Long idd) {
+		Tarefa tarefa = new Tarefa();
+		
+		try {	
+			String sql = "SELECT * FROM tarefas";
+			PreparedStatement stm = this.connection.prepareStatement(sql);
+			ResultSet rs = stm.executeQuery();
+				
+			while(rs.next()) {
+				tarefa.setId(rs.getLong("id"));
+				tarefa.setDescricao(rs.getString("descricao"));
+				tarefa.setFinalizado(rs.getBoolean("finalizado"));
+				//	Adicionando data ao contacto:
+					Calendar data = Calendar.getInstance();
+					if(rs.getDate("dataFinalizacao") == null) {
+						tarefa.setDataFinalizacao(null);
+					}else {
+						data.setTime(rs.getDate("dataFinalizacao"));
+						tarefa.setDataFinalizacao(data);
+					}
+				if(tarefa.getId() == idd)
+					return tarefa;
+			}
+			rs.close();
+			stm.close();
+			return tarefa;
+		}catch(SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
 	public void altera(Tarefa tarefa) {
@@ -84,6 +115,20 @@ public class TarefaDAO {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public void finaliza(Long id) {
+		String sql = "UPDATE tarefas SET dataFinalizacao = current_date WHERE id = ?";
+		
+		try {
+			PreparedStatement stm = connection.prepareStatement(sql);
+			stm.setLong(1, id);
+			stm.execute();
+			stm.close();
+		}catch(SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
 	public void remove(Tarefa tarefa) {
 		String sql = "DELETE FROM tarefas WHERE id = ?";
 		

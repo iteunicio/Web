@@ -31,6 +31,11 @@
 		<property name="basename" value="/WEB-INF/mensagens" />
 	</bean>
 	
+	<!-- Registando o interceptador -->
+	<mvc:interceptors>
+		<bean class="mz.com.caelum.tarefas.interceptor.AutorizadorInterceptor" />
+	</mvc:interceptors>
+	
 	<!-- Configuração da DataSource -->
 	<bean id="mysqlDataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>

@@ -1,7 +1,7 @@
 <!-- Taglib para validação de formulário -->
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
-<!-- Importação da taglib JSTL Core (for, if, when...) -->
+<!-- Importação da taglib JSTL Core (for, if, when, import ...) -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -27,7 +27,8 @@
 		</textarea>
 		<br />
 		<input type="submit" value="Adicionar" />
-		<br /><br />
+		<br />
+		<a href="listaTarefas"><h3>Ir à lista de tarefas</h3></a>
 		<br /><br />
 		<br /><br />
 		<br /><br />
